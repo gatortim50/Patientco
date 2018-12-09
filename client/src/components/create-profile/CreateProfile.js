@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-import SelectListGroup from '../common/SelectListGroup';
-import { createProfile } from '../../actions/profileActions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import TextFieldGroup from '../common/TextFieldGroup'
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
+import InputGroup from '../common/InputGroup'
+import SelectListGroup from '../common/SelectListGroup'
+import { createProfile } from '../../actions/profileActions'
 
 class CreateProfile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       displaySocialInputs: false,
       handle: '',
@@ -26,21 +26,21 @@ class CreateProfile extends Component {
       linkedin: '',
       youtube: '',
       instagram: '',
-      errors: {}
-    };
+      errors: {},
+    }
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({ errors: nextProps.errors })
     }
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const profileData = {
       handle: this.state.handle,
@@ -55,20 +55,20 @@ class CreateProfile extends Component {
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
-    };
+      instagram: this.state.instagram,
+    }
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.createProfile(profileData, this.props.history)
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   render() {
-    const { errors, displaySocialInputs } = this.state;
+    const { errors, displaySocialInputs } = this.state
 
-    let socialInputs;
+    let socialInputs
 
     if (displaySocialInputs) {
       socialInputs = (
@@ -118,7 +118,7 @@ class CreateProfile extends Component {
             error={errors.instagram}
           />
         </div>
-      );
+      )
     }
 
     // Select options for status
@@ -131,8 +131,8 @@ class CreateProfile extends Component {
       { label: 'Student or Learning', value: 'Student or Learning' },
       { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
       { label: 'Intern', value: 'Intern' },
-      { label: 'Other', value: 'Other' }
-    ];
+      { label: 'Other', value: 'Other' },
+    ]
 
     return (
       <div className="create-profile">
@@ -217,8 +217,8 @@ class CreateProfile extends Component {
                     type="button"
                     onClick={() => {
                       this.setState(prevState => ({
-                        displaySocialInputs: !prevState.displaySocialInputs
-                      }));
+                        displaySocialInputs: !prevState.displaySocialInputs,
+                      }))
                     }}
                     className="btn btn-light"
                   >
@@ -237,20 +237,21 @@ class CreateProfile extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+  errors: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
-});
+  errors: state.errors,
+})
 
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
-);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile))

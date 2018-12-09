@@ -1,54 +1,54 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { loginUser } from '../../actions/authActions'
+import TextFieldGroup from '../common/TextFieldGroup'
 
 class Login extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       email: '',
       password: '',
-      errors: {}
-    };
+      errors: {},
+    }
   }
 
-  onChangeHandler = (e) => {
-    console.log('click onChangeHandler: ', e.target);
-    this.setState({ [e.target.name]: e.target.value });
+  onChangeHandler = e => {
+    console.log('click onChangeHandler: ', e.target)
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/dashboard')
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/dashboard')
     }
 
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({ errors: nextProps.errors })
     }
   }
 
-  onSubmit = (e) =>{
-    e.preventDefault();
+  onSubmit = e => {
+    e.preventDefault()
 
     const userData = {
       email: this.state.email,
-      password: this.state.password
-    };
+      password: this.state.password,
+    }
 
-    this.props.loginUser(userData);
+    this.props.loginUser(userData)
   }
 
   render() {
-    const { errors } = this.state;
-    console.log('props: ', this.props);
+    const { errors } = this.state
+    console.log('props: ', this.props)
 
     return (
       <div className="login">
@@ -83,19 +83,22 @@ class Login extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+  errors: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
-});
+  errors: state.errors,
+})
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login)

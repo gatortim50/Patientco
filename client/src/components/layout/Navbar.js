@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/authActions';
-import { clearCurrentProfile } from '../../actions/profileActions';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { logoutUser } from '../../actions/authActions'
+import { clearCurrentProfile } from '../../actions/profileActions'
 
 class Navbar extends Component {
   onLogoutClick(e) {
-    e.preventDefault();
-    this.props.clearCurrentProfile();
-    this.props.logoutUser();
+    e.preventDefault()
+    this.props.clearCurrentProfile()
+    this.props.logoutUser()
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
@@ -44,7 +44,7 @@ class Navbar extends Component {
           </a>
         </li>
       </ul>
-    );
+    )
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
@@ -59,7 +59,7 @@ class Navbar extends Component {
           </Link>
         </li>
       </ul>
-    );
+    )
 
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
@@ -89,19 +89,20 @@ class Navbar extends Component {
           </div>
         </div>
       </nav>
-    );
+    )
   }
 }
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = state => ({
-  auth: state.auth
-});
+  auth: state.auth,
+})
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
-  Navbar
-);
+export default connect(
+  mapStateToProps,
+  { logoutUser, clearCurrentProfile }
+)(Navbar)

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Moment from 'react-moment';
-import { deleteEducation } from '../../actions/profileActions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import Moment from 'react-moment'
+import { deleteEducation } from '../../actions/profileActions'
 
 class Education extends Component {
   onDeleteClick(id) {
-    this.props.deleteEducation(id);
+    this.props.deleteEducation(id)
   }
 
   render() {
@@ -31,7 +31,7 @@ class Education extends Component {
           </button>
         </td>
       </tr>
-    ));
+    ))
     return (
       <div>
         <h4 className="mb-4">Education Credentials</h4>
@@ -47,12 +47,15 @@ class Education extends Component {
           </thead>
         </table>
       </div>
-    );
+    )
   }
 }
 
 Education.propTypes = {
-  deleteEducation: PropTypes.func.isRequired
-};
+  deleteEducation: PropTypes.func.isRequired,
+}
 
-export default connect(null, { deleteEducation })(Education);
+export default connect(
+  null,
+  { deleteEducation }
+)(Education)
