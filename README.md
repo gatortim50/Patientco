@@ -5,6 +5,10 @@
 ## Quick Start
 
 ```bash
+
+# Clone the project
+git clone git@github.com:gatortim50/Patientco.git
+cd Patientco
 # Install dependencies for server
 yarn
 
