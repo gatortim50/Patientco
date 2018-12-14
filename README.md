@@ -4,11 +4,17 @@
 
 ## Quick Start
 
+### Database Required
+
+- mongodb must be running
+
 ```bash
 
 # Clone the project
 git clone git@github.com:gatortim50/Patientco.git
+
 cd Patientco
+
 # Install dependencies for server
 yarn
 
@@ -26,9 +32,6 @@ yarn run client
 
 # Server runs on http://localhost:5000 and client on http://localhost:3000
 ```
-
-## App Info
-
 
 ### Useful routes
 
